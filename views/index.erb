@@ -1,14 +1,16 @@
-<h1>Enter a words and define them.</h1>
+<h1>Enter words and define them.</h1>
 
-<form action="/dealerships" method="post">
-  <label for="new_word"></label>
+<form action="/addition" method="post">
+  <label for="new_word">Add a word here:</label>
   <input id="new_word" name="new_word" type="text">
   <button type="submit" class="btn-lg btn-danger">Add Word</button>
 </form>
 
 <h2>Current word list:</h2>
+
+<% @@current_word.each() do |this_word|  %>
 <ul>
-  <% @words.each() do |word| %>
-  <li><a href="/define/<%= words.id() %>"><%= @word %></a></li>
-  <% end %>
+  <li><%= this_word[1].to_s + ": " + this_word[0] %></li>
 </ul>
+<% end %>
+<br>
