@@ -7,10 +7,18 @@
 </form>
 
 <h2>Current word list:</h2>
-
-<% @@current_word.each() do |this_word|  %>
-<ul>
-  <li><%= this_word[1].to_s + ": " + this_word[0] %></li>
-</ul>
+<% if @@current_word %>
+<% counter = 0 %>
+  <% @@current_word.each() do |this_word|  %>
+    <% counter += 1 %>
+  <ul>
+    <li><%= this_word[1].to_s + " : " + this_word[0] %>
+      <form action="/local_definition" method ="post">
+        <input type="hidden" id='view_defs' name='view_defs' value='<%= this_word[1] %>'>
+        <button name="view_defs" type="submit" value="<%= this_word[1] %>">View Definitions</button>
+      </form>
+    </li>
+  </ul>
+  <% end %>
 <% end %>
 <br>
