@@ -4,7 +4,6 @@ describe('define') do
   before() do
     Word.clear()
   end
-
   describe("Word#add_word") do
     it("adds a word to the list of defineable words") do
       word = Word.new("Potato")

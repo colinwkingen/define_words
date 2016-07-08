@@ -7,3 +7,8 @@ require './lib/define'
 get('/') do
   erb(:index)
 end
+
+get('/define') do
+  @words = Word.all()
+  erb(:index)
+end

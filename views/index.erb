@@ -9,6 +9,6 @@
 <h2>Current word list:</h2>
 <ul>
   <% @words.each() do |word| %>
-    <li><a href="/define/<%= words.id() %>"><%= vehicle.model() %></a></li>
+  <li><a href="/define/<%= words.id() %>"><%= @word %></a></li>
   <% end %>
 </ul>
