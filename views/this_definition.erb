@@ -1,14 +1,14 @@
 <h1>Here are the logged definitions for your selected word.</h1>
 <a href="/">Go Back</a>
-<h2><%= @@current_word[@@word_index - 1][0] %></h2>
+<h2><%= @@current_word[@@word_index[-1] - 1][0] %></h2>
 
-<h2><%= @@current_word[@@word_index - 1][2] %></h2>
+<h2><%= @@current_word[@@word_index[-1] - 1][2] %></h2>
 <br>
 <h3>You can add some more if you like. </h3>
 
-<form action="/add_definitions" method="post">
+<form action="/new_definitions" method="post">
   <label for="add_definition">Tell us what it means:</label>
-  <textarea rows="6" cols="50" id="add_definition" name="new_definition" type="text">
+  <textarea rows="6" cols="50" id="add_definition" name="add_definition" type="text">
   </textarea>
   <button type="submit" class="btn-lg btn-danger">Add definition</button>
 </form>

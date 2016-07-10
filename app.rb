@@ -3,7 +3,7 @@ require 'sinatra/reloader'
 also_reload 'lib/**/*.rb'
 require './lib/define'
 @@current_word = []
-@@word_index = 0
+@@word_index = []
 get('/') do
   erb(:index)
 end
@@ -33,21 +33,21 @@ post('/defined_it') do
   erb(:word_addition)
 end
 post('/local_definition') do
-  # definition = params.fetch('new_definition')
-  @@word_index = params.fetch('view_defs').to_i
+  @@word_index.push(params.fetch('view_defs').to_i)
   erb(:this_definition)
 end
 get('/local_definition') do
-  @@word_index = params.fetch('view_defs').to_i
+  @@word_index.push(params.fetch('view_defs').to_i)
   @@current_word[@@word_index][2] += definition
   erb(:this_definition)
 end
 post('/new_definitions') do
-  definition = params.fetch('add_definition')
-  @@current_word[@@word_index][2] += definition
+  @definition = params.fetch('add_definition')
+  @@current_word[@@word_index[-2]][2] += @definition
   erb(:this_definition)
 end
 get('/new_definitions') do
-  @@current_word[@@word_index][2] += definition
+  @definition = params.fetch('add_definition')
+  @@current_word[@@word_index[-2]][2] += @definition
   erb(:this_definition)
 end
