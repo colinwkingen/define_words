@@ -2,6 +2,8 @@
 
 #### By Colin Kingen, 2016
 
+visit it live at: https://pacific-spire-86090.herokuapp.com/
+
 ## Description
 
 This is a project that utilizes Sinatra as a server and runs on Heroku.
