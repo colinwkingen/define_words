@@ -1,5 +1,6 @@
 class Word
   @@words = []
+  @@latest = 0
   define_method(:initialize) do |word|
     @name = word
     @definitions_local = Definition.new()
@@ -25,6 +26,12 @@ class Word
   end
   define_singleton_method(:clear) do
     @@words = []
+  end
+  define_singleton_method(:set_latest) do |this_index|
+    @@latest = this_index
+  end
+  define_singleton_method(:latest) do
+    @@latest
   end
 end
 

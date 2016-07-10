@@ -12,10 +12,10 @@
 
 <h2>You Added:</h2>
 
-<h3><%= @@current_word[-1][0] %></h3>
+<h3><%= @@current_word[Word.latest().to_i][0] %></h3>
 <br>
 <h4>CURRENT DEFINITIONS</h4>
-<% if @@current_word[-1][2]  %>
-<%= @@current_word[-1][2] %>
+<% if @@current_word[Word.latest().to_i][2]  %>
+<%= @@current_word[Word.latest().to_i][2] %>
 <% end %>
 <br>

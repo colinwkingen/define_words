@@ -17,6 +17,7 @@ post('/addition') do
   @new_entry = params.fetch('new_word')
   @@current_word = Word.new(params.fetch('new_word')).save()
   @words = Word.all().join(" ")
+  Word.set_latest(@@current_word[-1][2])
   erb(:word_addition)
 end
 get('/') do
@@ -29,25 +30,17 @@ get('/addition') do
 end
 post('/defined_it') do
   definition = params.fetch('new_definition')
-  @@current_word[-1][2] += definition
+  @@current_word[Word.latest().to_i][2] += definition
   erb(:word_addition)
 end
 post('/local_definition') do
   @@word_index.push(params.fetch('view_defs').to_i)
-  erb(:this_definition)
+  Word.set_latest(params.fetch('view_defs').to_i)
+  erb(:word_addition)
 end
 get('/local_definition') do
+  Word.set_latest(params.fetch('view_defs').to_i)
   @@word_index.push(params.fetch('view_defs').to_i)
-  @@current_word[@@word_index][2] += definition
-  erb(:this_definition)
-end
-post('/new_definitions') do
-  @definition = params.fetch('add_definition')
-  @@current_word[@@word_index[-2]][2] += @definition
-  erb(:this_definition)
-end
-get('/new_definitions') do
-  @definition = params.fetch('add_definition')
-  @@current_word[@@word_index[-2]][2] += @definition
-  erb(:this_definition)
+  # @@current_word[Word.latest()][2] += @definition
+  erb(:word_addition)
 end
