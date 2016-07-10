@@ -33,7 +33,7 @@ post('/defined_it') do
   erb(:word_addition)
 end
 post('/local_definition') do
-  definition = params.fetch('new_definition')
+  # definition = params.fetch('new_definition')
   @@word_index = params.fetch('view_defs').to_i
   erb(:this_definition)
 end
@@ -43,8 +43,8 @@ get('/local_definition') do
   erb(:this_definition)
 end
 post('/new_definitions') do
-  definition = params.fetch('new_definition')
-  @@word_index = params.fetch('view_defs').to_i
+  definition = params.fetch('add_definition')
+  @@current_word[@@word_index][2] += definition
   erb(:this_definition)
 end
 get('/new_definitions') do
