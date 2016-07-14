@@ -21,6 +21,15 @@ class Word
   define_method(:save) do
     @@words.push([self.name, self.id, self.definitions])
   end
+  define_singleton_method(:get_by_index) do |index|
+    current_word = []
+    @@words.each() do |word|
+      if word[1] == index
+        current_word = word
+      end
+    end
+    current_word
+  end
   define_singleton_method(:all) do
     @@words
   end
@@ -28,10 +37,10 @@ class Word
     @@words = []
   end
   define_singleton_method(:set_latest) do |this_index|
-    @@latest = this_index
+    @@latest = this_index.to_i - 1
   end
   define_singleton_method(:latest) do
-    @@latest
+    @@latest.to_i
   end
 end
 
@@ -41,9 +50,9 @@ class Definition
     @definitions = ""
   end
   define_method(:save_definition) do |definition|
-    @definitions.push(definition)
+    @definitions += definition.to_s
   end
   define_method(:regurgitate_definitions) do
-      @definitions
+    @definitions
   end
 end

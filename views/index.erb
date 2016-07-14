@@ -7,10 +7,8 @@
 </form>
 
 <h2>Current word list:</h2>
-<% if @@current_word %>
-<% counter = 0 %>
-  <% @@current_word.each() do |this_word|  %>
-    <% counter += 1 %>
+<% if @word_list %>
+  <% @word_list.each() do |this_word|  %>
   <ul>
     <li><%= this_word[1].to_s + " : " + this_word[0] %>
       <form action="/local_definition" method ="post">

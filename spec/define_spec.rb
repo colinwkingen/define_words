@@ -11,16 +11,16 @@ describe('define') do
     end
   end
   describe("Word#definitions") do
-    it("looks for a definition and returns empty array if none") do
+    it("looks for a definition and returns empty if none") do
       word = Word.new("Potato")
-      expect(word.definitions()).to(eq([]))
+      expect(word.definitions()).to(eq(""))
     end
   end
   describe("Word#definitions") do
     it("looks for a definition and returns one if it exists in an array of definitions") do
       word = Word.new("Potato")
       word.add_definition(["Lumpy carb laden fruit of the soil."])
-      expect(word.definitions()).to(eq([["Lumpy carb laden fruit of the soil."]]))
+      expect(word.definitions()).to(eq("[\"Lumpy carb laden fruit of the soil.\"]"))
     end
   end
   describe("word#id") do
