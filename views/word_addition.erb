@@ -14,5 +14,8 @@
 <h3><%= @current_word[0] %></h3>
 <br>
 <h4>CURRENT DEFINITIONS</h4>
-<%=  @current_word[2] %>
-<br>
+  <ul>
+<h3><% @current_word[2].each() do |definition| %></h3>
+    <li><%= definition.definitions() %></li>
+    <% end %>
+  </ul>

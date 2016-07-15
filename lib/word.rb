@@ -3,23 +3,23 @@ class Word
   @@latest = 0
   define_method(:initialize) do |word|
     @name = word
-    @definitions_local = Definition.new()
+    @definitions_local = []
     @id = @@words.length().to_i.+(1)
   end
   define_method(:name) do
      @name
   end
-  define_method(:definitions) do
-    @definitions_local.regurgitate_definitions()
+  define_method(:definitions_local) do
+    @definitions_local
   end
   define_method(:id) do
     @id
   end
   define_method(:add_definition) do |definition|
-    @definitions_local.save_definition(definition)
+    @definitions_local.push([definition])
   end
   define_method(:save) do
-    @@words.push([self.name, self.id, self.definitions])
+    @@words.push([self.name, self.id, self.definitions_local])
   end
   define_singleton_method(:get_by_index) do |index|
     current_word = []
@@ -40,19 +40,6 @@ class Word
     @@latest = this_index.to_i - 1
   end
   define_singleton_method(:latest) do
-    @@latest.to_i
-  end
-end
-
-
-class Definition
-  define_method(:initialize) do
-    @definitions = ""
-  end
-  define_method(:save_definition) do |definition|
-    @definitions += definition.to_s
-  end
-  define_method(:regurgitate_definitions) do
-    @definitions
+    @@latest
   end
 end
