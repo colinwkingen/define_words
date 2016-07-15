@@ -13,7 +13,7 @@
     <li><%= this_word[1].to_s + " : " + this_word[0] %>
       <form action="/local_definition" method ="post">
         <input type="hidden" id='view_defs' name='view_defs' value='<%= this_word[1] %>'>
-        <button name="view_defs" type="submit" value="<%= this_word[1] %>">View Definitions</button>
+        <button name="view_defs" type="submit" value="<%= this_word[1] %>">View <%= this_word[0] %> Definitions</button>
       </form>
     </li>
   </ul>

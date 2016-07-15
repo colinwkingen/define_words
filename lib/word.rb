@@ -15,20 +15,8 @@ class Word
   define_method(:id) do
     @id
   end
-  define_method(:add_definition) do |definition|
-    @definitions_local.push([definition])
-  end
   define_method(:save) do
     @@words.push([self.name, self.id, self.definitions_local])
-  end
-  define_singleton_method(:get_by_index) do |index|
-    current_word = []
-    @@words.each() do |word|
-      if word[1] == index
-        current_word = word
-      end
-    end
-    current_word
   end
   define_singleton_method(:all) do
     @@words

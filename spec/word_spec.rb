@@ -5,29 +5,43 @@ describe('word') do
   before() do
     Word.clear()
   end
-  describe("Word#save") do
+  describe("Word#name") do
     it("creates a simple word object") do
       word = Word.new("Potato")
       expect(word.name()).to(eq("Potato"))
     end
   end
-  # describe("Word#definitions") do
-  #   it("looks for a definition and returns empty if none") do
-  #     word = Word.new("Potato")
-  #     expect(word.definitions()).to(eq(""))
-  #   end
-  # end
-  # describe("Word#definitions") do
-  #   it("looks for a definition and returns one if it exists in an array of definitions") do
-  #     word = Word.new("Potato")
-  #     word.add_definition(["Lumpy carb laden fruit of the soil."])
-  #     expect(word.definitions()).to(eq("[\"Lumpy carb laden fruit of the soil.\"]"))
-  #   end
-  # end
-  describe("word#id") do
-    it("returns the id of a particular word") do
+  describe("Word#save") do
+    it("looks takes a word object and saves it to an array of words") do
+       Word.new("Potato").save()
+       this_word = Word.all()[0]
+      expect(this_word).to(eq(["Potato", 1, []]))
+    end
+  end
+  describe("Word#clear") do
+    it("removes all stored words from the array") do
+      word = Word.new("Potato").save()
+      word = Word.new("Yam").save()
+      Word.clear()
+      expect(Word.all()).to(eq([]))
+    end
+  end
+  describe("word#set_latest") do
+    it("stores the id of the last word accessed") do
       word = Word.new("Potato")
-      expect(word.id()).to(eq(1))
+      word.save()
+      Word.set_latest(word.id)
+      expect(Word.latest()).to(eq(0))
+    end
+  end
+  describe("word#latest") do
+    it("returns the INDEX of the last word accessed") do
+      word1 = Word.new("Potato")
+      word2 = Word.new("Yam")
+      word1.save()
+      word2.save()
+      Word.set_latest(word1.id())
+      expect(Word.latest()).to(eq(0))
     end
   end
 end
