@@ -32,7 +32,6 @@ end
 
 post('/defined_it') do
   @this_word = Word.find(params.fetch('id'))
-  new_definition = params.fetch('new_definition')
-  @this_word.add_definition(new_definition)
+  @this_word.add_definition(Definition.new(params.fetch('new_definition')))
   erb(:word_addition)
 end
