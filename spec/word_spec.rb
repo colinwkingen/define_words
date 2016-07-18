@@ -13,9 +13,8 @@ describe('word') do
   end
   describe("Word#save") do
     it("looks takes a word object and saves it to an array of words") do
-       Word.new("Potato").save()
-       this_word = Word.all()[0]
-      expect(this_word).to(eq(["Potato", 1, []]))
+      enter_word = Word.new("Potato").save()
+      expect(Word.all()).to(eq(enter_word))
     end
   end
   describe("Word#clear") do
@@ -26,22 +25,22 @@ describe('word') do
       expect(Word.all()).to(eq([]))
     end
   end
-  describe("word#set_latest") do
+  describe("word#add_definition") do
     it("stores the id of the last word accessed") do
       word = Word.new("Potato")
       word.save()
-      Word.set_latest(word.id)
-      expect(Word.latest()).to(eq(0))
+      word.add_definition("A starchy dirt fruit.")
+      expect(word.definitions_local).to(eq(["A starchy dirt fruit."]))
     end
   end
-  describe("word#latest") do
-    it("returns the INDEX of the last word accessed") do
+  describe("word#find") do
+    it("takes an index and compares it against that of another word") do
       word1 = Word.new("Potato")
       word2 = Word.new("Yam")
       word1.save()
       word2.save()
-      Word.set_latest(word1.id())
-      expect(Word.latest()).to(eq(0))
+
+      expect(word1.id).to(eq(1))
     end
   end
 end
