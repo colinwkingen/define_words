@@ -4,6 +4,7 @@
   <label for="new_definition">Tell us what it means:</label>
   <textarea rows="6" cols="50" id="new_definition" name="new_definition" type="text">
   </textarea>
+  <input type="hidden" id='id' name='id' value='<%= @this_word.id %>'>
   <button type="submit" class="btn-lg btn-danger">Add definition</button>
 </form>
 
@@ -11,11 +12,11 @@
 <a href="/">Go Back</a>
 
 <h2>You Added:</h2>
-<h3><%= @current_word[0] %></h3>
+<h3><%= @this_word.name %></h3>
 <br>
 <h4>CURRENT DEFINITIONS</h4>
   <ul>
-<h3><% @current_word[2].each() do |definition| %></h3>
-    <li><%= definition.definitions() %></li>
+<h3><% @this_word.definitions_local().each() do |definition| %></h3>
+    <li><%= definition %></li>
     <% end %>
   </ul>

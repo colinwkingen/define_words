@@ -10,10 +10,10 @@
 <% if @word_list %>
   <% @word_list.each() do |this_word|  %>
   <ul>
-    <li><%= this_word[1].to_s + " : " + this_word[0] %>
-      <form action="/local_definition" method ="post">
-        <input type="hidden" id='view_defs' name='view_defs' value='<%= this_word[1] %>'>
-        <button name="view_defs" type="submit" value="<%= this_word[1] %>">View <%= this_word[0] %> Definitions</button>
+    <li><%= this_word.id.to_s + " : " + this_word.name %>
+      <form action="/local_definition/<%= this_word.id() %>" method ="post">
+        <input type="hidden" id='id' name='id' value='<%= this_word.id %>'>
+        <button name="id" type="submit" value="<%= this_word.id %>">View <%= this_word.name %> Definitions</button>
       </form>
     </li>
   </ul>
